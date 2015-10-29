@@ -13,8 +13,10 @@ class ReCaptcha(forms.widgets.Widget):
         recaptcha_challenge_name = 'recaptcha_challenge_field'
         recaptcha_response_name = 'recaptcha_response_field'
 
-    def __init__(self, public_key=None, use_ssl=None, attrs={}, *args,
+    def __init__(self, public_key=None, use_ssl=None, attrs=None, *args,
                  **kwargs):
+         if attrs is None:
+            attrs = {}
         self.public_key = public_key if public_key else \
             settings.RECAPTCHA_PUBLIC_KEY
         self.use_ssl = use_ssl if use_ssl is not None else getattr(
